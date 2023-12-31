@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-fd407ad4","path":"/tags/dabaobushu/1/","title":"","lang":"en-US","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{a as data};

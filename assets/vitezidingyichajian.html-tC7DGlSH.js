@@ -1,0 +1,47 @@
+import{_ as n,o as s,c as a,e as t}from"./app-jmEemqZF.js";const p={},e=t(`<div class="language-javascript line-numbers-mode" data-ext="js"><pre class="language-javascript"><code><span class="token comment">//plugins &gt; randomLetterPlugin.js</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">randomLetterPlugin</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> randomLetter <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">&#39;你好！&#39;</span><span class="token punctuation">,</span> <span class="token string">&#39;欢迎来到我的博客！&#39;</span><span class="token punctuation">,</span> <span class="token string">&#39;打开我的控制台想干什么？&#39;</span><span class="token punctuation">]</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">getRandomLetterPrint</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> chooseLetter <span class="token operator">=</span> randomLetter<span class="token punctuation">[</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> randomLetter<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&#39;%c&#39;</span><span class="token operator">+</span> chooseLetter<span class="token punctuation">,</span><span class="token string">&#39;padding:5px;font-size:20px;color:#fff;text-shadow:0 1px 0#ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 2px 2px rgba(0,0,0,.2),0 4px 4px rgba(0,0,0,.15);&#39;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">&#39;random-letter-plugin&#39;</span><span class="token punctuation">,</span>
+    <span class="token function">configureServer</span><span class="token punctuation">(</span><span class="token parameter">server</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* server.middlewares.use(async (ctx, next) =&gt; {
+        getRandomLetterPrint()
+        await next()
+      }) */</span>
+      <span class="token function">getRandomLetterPrint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">//添加部分</span>
+    <span class="token function">transform</span><span class="token punctuation">(</span><span class="token parameter">code<span class="token punctuation">,</span> id</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>id<span class="token punctuation">.</span><span class="token function">endsWith</span><span class="token punctuation">(</span><span class="token string">&#39;main.js&#39;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> code <span class="token operator">+</span> <span class="token template-string"><span class="token template-punctuation string">\`</span><span class="token string">
+        if(typeof window !== &#39;undefined&#39;){
+          const randomLetter = [&#39;你好！&#39;,&#39;欢迎来到我的博客！&#39;,&#39;打开我的控制台想干什么？&#39;]
+          console.log(&#39;%c&#39;+&#39;刷新看看？&#39;,&#39;padding:5px;font-size:20px;color:#fff;text-shadow:0 1px 0#ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 2px 2px rgba(0,0,0,.2),0 4px 4px rgba(0,0,0,.15);&#39;)
+          const getRandomLetterPrint = ()=&gt;{
+              const chooseLetter = randomLetter[Math.floor(Math.random()*randomLetter.length)]
+              console.log(&#39;%c&#39;+ chooseLetter,&#39;padding:5px;font-size:20px;color:#fff;text-shadow:0 1px 0#ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 2px 2px rgba(0,0,0,.2),0 4px 4px rgba(0,0,0,.15);&#39;)
+          }
+          getRandomLetterPrint()
+        }
+        </span><span class="token template-punctuation string">\`</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> code<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-javascript line-numbers-mode" data-ext="js"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;vite&#39;</span>
+<span class="token keyword">import</span> vue <span class="token keyword">from</span> <span class="token string">&#39;@vitejs/plugin-vue&#39;</span>
+
+<span class="token comment">/* const randomLetterPlugin = require(&#39;./plugins/randomLetterPlugin&#39;); */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>randomLetterPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;./plugins/randomLetterPlugin&#39;</span>
+<span class="token comment">// https://vitejs.dev/config/</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">vue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">randomLetterPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,2),o=[e];function c(i,l){return s(),a("div",null,o)}const u=n(p,[["render",c],["__file","vitezidingyichajian.html.vue"]]);export{u as default};
